@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lottery Inventory Counting</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 0;
+        max-width: 500px;
+        margin: auto;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      label {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+      }
+
+      input[type="number"] {
+        width: 50px;
+        padding: 10px;
+        font-size: 16px;
+        margin: 0 5px;
+      }
+
+      .result {
+        font-weight: bold;
+        background-color: #f0f0f0;
+        padding: 10px;
+        margin-left: 5px;
+        white-space: nowrap;
+        min-width: 80px;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lottery Inventory Counting</h1>
+
+    <div class="form-group">
+      <label for="openingNos">Opening Scratch Nos. (A):</label>
+      <input type="number" id="openingNos" value="0" min="0" />
+    </div>
+
+    <div class="form-group">
+      <label for="openingDollar">Opening Scratch ($) (B):</label>
+      <input type="number" id="openingDollar" value="0" min="0" />
+    </div>
+
+    <div class="form-group">
+      <label>$2 * (x + y) = </label>
+      <input type="number" id="x2" value="0" min="0" placeholder="x" /> +
+      <input type="number" id="y2" value="0" min="0" placeholder="y" />
+      <div class="result" id="z2">$0</div>
+    </div>
+
+    <div class="form-group">
+      <label>$3 * (x + y) = </label>
+      <input type="number" id="x3" value="0" min="0" placeholder="x" /> +
+      <input type="number" id="y3" value="0" min="0" placeholder="y" />
+      <div class="result" id="z3">$0</div>
+    </div>
+
+    <div class="form-group">
+      <label>$4 * (x + y) = </label>
+      <input type="number" id="x4" value="0" min="0" placeholder="x" /> +
+      <input type="number" id="y4" value="0" min="0" placeholder="y" />
+      <div class="result" id="z4">$0</div>
+    </div>
+
+    <div class="form-group">
+      <label>$5 * (x + y) = </label>
+      <input type="number" id="x5" value="0" min="0" placeholder="x" /> +
+      <input type="number" id="y5" value="0" min="0" placeholder="y" />
+      <div class="result" id="z5">$0</div>
+    </div>
+
+    <div class="form-group">
+      <label>$10 * (x + y) = </label>
+      <input type="number" id="x10" value="0" min="0" placeholder="x" /> +
+      <input type="number" id="y10" value="0" min="0" placeholder="y" />
+      <div class="result" id="z10">$0</div>
+    </div>
+
+    <div class="form-group">
+      <label>$20 * (x + y) = </label>
+      <input type="number" id="x20" value="0" min="0" placeholder="x" /> +
+      <input type="number" id="y20" value="0" min="0" placeholder="y" />
+      <div class="result" id="z20">$0</div>
+    </div>
+
+    <div class="form-group">
+      <label>$30 * (x + y) = </label>
+      <input type="number" id="x30" value="0" min="0" placeholder="x" /> +
+      <input type="number" id="y30" value="0" min="0" placeholder="y" />
+      <div class="result" id="z30">$0</div>
+    </div>
+
+    <div class="form-group">
+      <label>$50 * (x + y) = </label>
+      <input type="number" id="x50" value="0" min="0" placeholder="x" /> +
+      <input type="number" id="y50" value="0" min="0" placeholder="y" />
+      <div class="result" id="z50">$0</div>
+    </div>
+
+    <div class="form-group">
+      <label>$25 * (x + y) = </label>
+      <input type="number" id="x25" value="0" min="0" placeholder="x" /> +
+      <input type="number" id="y25" value="0" min="0" placeholder="y" />
+      <div class="result" id="z25">$0</div>
+    </div>
+
+    <div class="form-group">
+      <label>Closing Scratch Nos. (C):</label>
+      <div class="result" id="closingNos">0</div>
+    </div>
+
+    <div class="form-group">
+      <label>Closing Scratch ($) (D):</label>
+      <div class="result" id="closingDollar">$0</div>
+    </div>
+
+    <div class="form-group">
+      <label for="activationNos">Activation Scratch Nos. (E):</label>
+      <input type="number" id="activationNos" value="0" min="0" />
+    </div>
+
+    <div class="form-group">
+      <label for="activationDollar">Activation Scratch ($) (F):</label>
+      <input type="number" id="activationDollar" value="0" min="0" />
+    </div>
+
+    <div class="form-group">
+      <label>Total Nos. (C-E) (G):</label>
+      <div class="result" id="totalNos">0</div>
+    </div>
+
+    <div class="form-group">
+      <label>Total ($) (D-F) (H):</label>
+      <div class="result" id="totalDollar">$0</div>
+    </div>
+
+    <div class="form-group">
+      <label>Scratch Sold Nos. (A-G):</label>
+      <div class="result" id="scratchSoldNos">0</div>
+    </div>
+
+    <div class="form-group">
+      <label>Scratch Sold ($) (B-H):</label>
+      <div class="result" id="scratchSoldDollar">$0</div>
+    </div>
+
+    <script>
+      function calculate() {
+        // Calculate Z values
+        const z2 =
+          2 *
+          (parseInt(document.getElementById("x2").value) +
+            parseInt(document.getElementById("y2").value));
+        document.getElementById("z2").innerText = `$${z2}`;
+
+        const z3 =
+          3 *
+          (parseInt(document.getElementById("x3").value) +
+            parseInt(document.getElementById("y3").value));
+        document.getElementById("z3").innerText = `$${z3}`;
+
+        const z4 =
+          4 *
+          (parseInt(document.getElementById("x4").value) +
+            parseInt(document.getElementById("y4").value));
+        document.getElementById("z4").innerText = `$${z4}`;
+
+        const z5 =
+          5 *
+          (parseInt(document.getElementById("x5").value) +
+            parseInt(document.getElementById("y5").value));
+        document.getElementById("z5").innerText = `$${z5}`;
+
+        const z10 =
+          10 *
+          (parseInt(document.getElementById("x10").value) +
+            parseInt(document.getElementById("y10").value));
+        document.getElementById("z10").innerText = `$${z10}`;
+
+        const z20 =
+          20 *
+          (parseInt(document.getElementById("x20").value) +
+            parseInt(document.getElementById("y20").value));
+        document.getElementById("z20").innerText = `$${z20}`;
+
+        const z30 =
+          30 *
+          (parseInt(document.getElementById("x30").value) +
+            parseInt(document.getElementById("y30").value));
+        document.getElementById("z30").innerText = `$${z30}`;
+
+        const z50 =
+          50 *
+          (parseInt(document.getElementById("x50").value) +
+            parseInt(document.getElementById("y50").value));
+        document.getElementById("z50").innerText = `$${z50}`;
+
+        const z25 =
+          25 *
+          (parseInt(document.getElementById("x25").value) +
+            parseInt(document.getElementById("y25").value));
+        document.getElementById("z25").innerText = `$${z25}`;
+
+        // Calculate Closing Scratch Nos. (C)
+        const closingNos =
+          parseInt(document.getElementById("x2").value) +
+          parseInt(document.getElementById("y2").value) +
+          parseInt(document.getElementById("x3").value) +
+          parseInt(document.getElementById("y3").value) +
+          parseInt(document.getElementById("x4").value) +
+          parseInt(document.getElementById("y4").value) +
+          parseInt(document.getElementById("x5").value) +
+          parseInt(document.getElementById("y5").value) +
+          parseInt(document.getElementById("x10").value) +
+          parseInt(document.getElementById("y10").value) +
+          parseInt(document.getElementById("x20").value) +
+          parseInt(document.getElementById("y20").value) +
+          parseInt(document.getElementById("x30").value) +
+          parseInt(document.getElementById("y30").value) +
+          parseInt(document.getElementById("x50").value) +
+          parseInt(document.getElementById("y50").value) +
+          parseInt(document.getElementById("x25").value) +
+          parseInt(document.getElementById("y25").value);
+        document.getElementById("closingNos").innerText = closingNos;
+
+        // Calculate Closing Dollar (D)
+        const closingDollar = z2 + z3 + z4 + z5 + z10 + z20 + z30 + z50 + z25;
+        document.getElementById(
+          "closingDollar"
+        ).innerText = `$${closingDollar}`;
+
+        // Calculate Total Nos (G)
+        const totalNos =
+          closingNos - parseInt(document.getElementById("activationNos").value);
+        document.getElementById("totalNos").innerText = totalNos;
+
+        // Calculate Total Dollar (H)
+        const totalDollar =
+          closingDollar -
+          parseInt(document.getElementById("activationDollar").value);
+        document.getElementById("totalDollar").innerText = `$${totalDollar}`;
+
+        // Calculate Scratch Sold Nos. (A-G)
+        const scratchSoldNos =
+          parseInt(document.getElementById("openingNos").value) - totalNos;
+        document.getElementById("scratchSoldNos").innerText = scratchSoldNos;
+
+        // Calculate Scratch Sold ($) (B-H)
+        const scratchSoldDollar =
+          parseInt(document.getElementById("openingDollar").value) -
+          totalDollar;
+        document.getElementById(
+          "scratchSoldDollar"
+        ).innerText = `$${scratchSoldDollar}`;
+      }
+
+      document.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", calculate);
+      });
+
+      calculate(); // Initial calculation
+    </script>
+  </body>
+</html>
