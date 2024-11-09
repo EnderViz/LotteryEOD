@@ -126,6 +126,14 @@
     </div>
 
     <div class="form-group">
+      <label>$100 * (x + y) = </label>
+      <input type="number" id="x100" value="0" min="0" placeholder="x" /> +
+      <input type="number" id="y100" value="0" min="0" placeholder="y" />
+      <div class="result" id="z100">$0</div>
+    </div>
+
+
+    <div class="form-group">
       <label>Closing Scratch Nos. (C):</label>
       <div class="result" id="closingNos">0</div>
     </div>
@@ -222,6 +230,13 @@
             parseInt(document.getElementById("y25").value));
         document.getElementById("z25").innerText = `$${z25}`;
 
+        const z100 =
+          100 *
+          (parseInt(document.getElementById("x100").value) +
+            parseInt(document.getElementById("y100").value));
+        document.getElementById("z100").innerText = `$${z100}`;
+
+
         // Calculate Closing Scratch Nos. (C)
         const closingNos =
           parseInt(document.getElementById("x2").value) +
@@ -241,11 +256,13 @@
           parseInt(document.getElementById("x50").value) +
           parseInt(document.getElementById("y50").value) +
           parseInt(document.getElementById("x25").value) +
-          parseInt(document.getElementById("y25").value);
+          parseInt(document.getElementById("y25").value) +
+          parseInt(document.getElementById("x100").value) +
+          parseInt(document.getElementById("y100").value);
         document.getElementById("closingNos").innerText = closingNos;
 
         // Calculate Closing Dollar (D)
-        const closingDollar = z2 + z3 + z4 + z5 + z10 + z20 + z30 + z50 + z25;
+        const closingDollar = z2 + z3 + z4 + z5 + z10 + z20 + z30 + z50 + z25 + z100;
         document.getElementById(
           "closingDollar"
         ).innerText = `$${closingDollar}`;
